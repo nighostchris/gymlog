@@ -42,6 +42,10 @@ exports.validate = [
 		.isLength({ min: 8 }).withMessage('Minimum 8 characters')
 		.matches(/\d/)
 		.withMessage('Must contain at least 1 number'),
+	check('firstname')
+		.isLength({ min: 1 }),
+	check('surname')
+		.isLength({ min: 1 }),
 ];
 
 exports.register = (req, res) => {
