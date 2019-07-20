@@ -17,9 +17,10 @@ module.exports = (sequelize, DataTypes) => {
 		},
 	});
 
+	/*
 	Tokens.associate = (models) => {
 		models.Tokens.hasOne(models.Users);
 	};
-
+*/
 	return Tokens;
 };

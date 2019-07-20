@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 
 exports.generateHashedPassword = (password, s) => {
 	if (!s) {
-		s = bcrypt.genSaltSync(20);
+		s = bcrypt.genSaltSync(10);
 	}
 
 	const hash = bcrypt.hashSync(password, s);

@@ -16,6 +16,14 @@ module.exports = {
 			surname: {
 				type: Sequelize.STRING(20),
 			},
+			createdAt: {
+				type: Sequelize.DATE,
+				allowNull: false,
+			},
+			updatedAt: {
+				type: Sequelize.DATE,
+				allowNull: false,
+			},
 		});
 	},
 

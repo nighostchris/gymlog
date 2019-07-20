@@ -1,10 +1,9 @@
-const { check, validationResult } = require('express-validator');
-const { matchedData } = require('express-validator/filter');
-const sequelize = require('../models/index');
+const { check, matchedData, validationResult } = require('express-validator');
 const bcrypt = require('./bcrypt');
+const models = require('../models');
 
-const Tokens = sequelize.import('../models/tokens.js');
-const Users = sequelize.import('../models/users.js');
+const Tokens = models.tokens;
+const Users = models.users;
 
 const createUser = (input, res) => {
 	const user = {
@@ -18,7 +17,7 @@ const createUser = (input, res) => {
 		return Tokens.create({
 			username: result.username,
 			salt: hashedPassword.salt,
-			hash: hashedPassword.hash,
+			hash: hashedPassword.hashedPassword,
 		});
 	}).then((success) => {
 		res.status(200);

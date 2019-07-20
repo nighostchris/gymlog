@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.route('/api/v1/users')
-	.post(registerFunctions.register);
+	.post(registerFunctions.validate, registerFunctions.register);
 
 app.listen(3000, () => {
 	console.log('API available on port 3000');
