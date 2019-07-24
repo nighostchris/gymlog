@@ -1,29 +1,34 @@
-# client
+# GymLog
 
-## Project setup
+GymLog is a web-app for recording personal workout data and diet.
+
+### Arch
+
+This repo is basically seperated into 2 folders, server and client, which make use of :
+
+* [Vue.js](https://vuejs.org/) - progressive framework for building frontend user interface
+* [Node.js](https://nodejs.org/en/) - event driven Javascript runtime for building scalable network applications
+* [Express](https://expressjs.com/) - minimalist web framework for Node.js
+* [PostgreSQL](https://www.postgresql.org/) - open source relational database
+* [Sequelize](http://docs.sequelizejs.com/) - promise-based Node.js ORM
+
+### Installation
+Global npm package required
+```sh
+> npm install @vue/cli sequelize-cli -g
 ```
-npm install
+One terminal for running the server
+```sh
+> cd gymlog/server
+> npm install
+> npm run start
+```
+Another terminal for running the client
+```sh
+> cd gymlog/client
+> npm install
+> npm run serve
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### API route
+Not Yet Finish
