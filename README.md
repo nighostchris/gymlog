@@ -32,3 +32,6 @@ Another terminal for running the client
 
 ### API route
 Not Yet Finish
+
+### Traps during development
+1. When using vue-router, the VueRouter object created need to be named as router before passing it to Vue instance and make use of it. Otherwise "Uncaught TypeError: Cannot read property 'matched' of undefined" will appear.
