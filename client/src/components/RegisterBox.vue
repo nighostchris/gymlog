@@ -2,7 +2,7 @@
   <v-container fill-height>
     <v-layout align-center justify-center>
       <v-flex xs8 md6 lg6 xl6>
-        <v-card :elevation="15" color="light-blue lighten-5">
+        <v-card :elevation="15" color="blue-grey lighten-5">
           <div class="font-weight-light headline title">Register</div>
           <v-layout justify-center pt-7>
             <v-flex xs8 md8 lg8 xl8>
@@ -39,6 +39,15 @@
                 clearable
               >
               </v-text-field>
+              <v-layout justify-end pb-7>
+                <v-btn
+                  color="indigo accent-4"
+                  class="white--text font-weight-bold"
+                  @click="onSubmit"
+                >
+                  Submit
+                </v-btn>
+              </v-layout>
             </v-flex>
           </v-layout>
         </v-card>
@@ -62,6 +71,12 @@ export default {
         passwordNumber: value => value.match(/^(?=.*[0-9])/) || 'Contain at least 1 number.',
       },
     };
+  },
+  methods: {
+    onSubmit() {
+      console.log('clicked');
+      console.log(`${this.username} ${this.firstname} ${this.surname}`);
+    },
   },
 };
 </script>
