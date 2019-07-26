@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import RegisterBox from './components/RegisterBox.vue';
+import TestDialog from './components/TestDialog.vue';
 
 Vue.use(Router);
 
@@ -18,6 +19,11 @@ export default new Router({
       path: '/test',
       name: 'test',
       component: RegisterBox,
+    },
+    {
+      path: '/dialog',
+      name: 'dialog',
+      component: TestDialog,
     },
     {
       path: '/about',
