@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import RegisterBox from './components/RegisterBox.vue';
 import Record from './components/Record.vue';
+import Dashboard from './views/Dashboard.vue';
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/record',
       name: 'record',
       component: Record,
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
     },
     {
       path: '/about',
