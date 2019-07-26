@@ -11,21 +11,22 @@
       </v-card-title>
       <v-card-text>
         <v-container>
-          <v-layout>
+          <v-layout column>
             <v-flex xs12 sm6>
               <v-select
-                :items="['0-17', '18-29', '30-54', '54+']"
-                label="Age*"
-                required
+                :items="['Bicep', 'Tricep', 'Back', 'Chest']"
+                label="Muscle Group"
+                @change="changeMuscleGroup"
               ></v-select>
             </v-flex>
+            <!--
             <v-flex xs12 sm6>
-              <v-autocomplete
-                :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey']"
-                label="Interests"
-                multiple
-              ></v-autocomplete>
+              <v-select
+                :items="['Cable', 'Normal curl', 'hammer']"
+                label="Posture"
+              ></v-select>
             </v-flex>
+            -->
           </v-layout>
         </v-container>
       </v-card-text>
@@ -40,10 +41,24 @@
 
 <script>
 export default {
+  props: {
+    muscleGroup: String,
+  },
   data() {
     return {
       dialog: false,
     };
   },
+  methods: {
+    changeMuscleGroup($event) {
+      this.$emit('changeMuscleGroup', $event);
+    },
+  },
 };
 </script>
+
+<style>
+.v-label--active {
+  top: 10px !important;
+}
+</style>
