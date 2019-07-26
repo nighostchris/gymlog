@@ -65,10 +65,10 @@ export default {
       firstname: '',
       surname: '',
       rules: {
-        required: value => !!value || 'Required.',
-        nameLengthLimit: value => (value !== null ? value.length <= 20 : 'Maximum 20 characters.'),
-        passwordLength: value => (value !== null ? value.length >= 8 : 'Minimum 8 characters.'),
-        passwordNumber: value => value.match(/^(?=.*[0-9])/) || 'Contain at least 1 number.',
+        required: v => !!v || 'Required.',
+        nameLengthLimit: v => (v && v.length <= 20) || 'Maximum 20 characters.',
+        passwordLength: v => (v && v.length >= 8) || 'Minimum 8 characters.',
+        passwordNumber: v => v.match(/^(?=.*[0-9])/) || 'Contain at least 1 number.',
       },
     };
   },
