@@ -5,7 +5,6 @@
       <v-layout justify-center>
         <v-bottom-navigation
           v-model="bottomController"
-          max-width="60%"
           absolute
         >
           <v-btn value="recent">
@@ -44,11 +43,16 @@ export default {
 </script>
 
 <style>
-.container--fluid {
-  max-width: 60%;
+@media only screen and (min-width: 600px) {
+  .container--fluid {
+    max-width: 60%;
+  }
+
+  .v-bottom-navigation--absolute {
+    left: auto !important;
+    max-width: 60% !important;
+  }
 }
 
-.v-bottom-navigation--absolute {
-  left: auto !important;
-}
+
 </style>
