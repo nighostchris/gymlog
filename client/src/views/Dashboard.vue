@@ -53,6 +53,4 @@ export default {
     max-width: 60% !important;
   }
 }
-
-
 </style>
