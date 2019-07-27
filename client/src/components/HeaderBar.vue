@@ -12,8 +12,16 @@ export default {
 </script>
 
 <style>
+@media only screen and (max-width: 375px) {
+  .v-sheet {
+    width: 100% !important;
+  }
+}
+
 .v-sheet {
   border-radius: 0px;
+  width: 60%;
+  position: fixed;
 }
 
 .v-toolbar__content {
