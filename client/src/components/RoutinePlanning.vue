@@ -1,5 +1,6 @@
 <template>
-  <div class="dis">
+  <div>
+  <div>
     <ExerciseSearch
       :selected="selected"
       :exerciseList="exerciseList"
@@ -7,6 +8,34 @@
       :tools="tools"
       @changeSelectedExercise="updateSelectedExercise($event)"
     />
+  </div>
+  <div>
+    <v-btn
+      color="light-blue darken-1 font-weight-bold"
+      dark
+      @click="newRoutineDialog = true"
+    >
+      Create New Routine
+    </v-btn>
+    <v-dialog v-model="newRoutineDialog">
+      <v-card>
+        <v-card-title>
+          <span class="headline">New Routine</span>
+          <span class="subtitle-1">Remarks</span>
+        </v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="light-blue lighten-4"
+          >Add Exercises</v-btn>
+          <v-btn
+            color="pink lighten-4"
+            @click="newRoutineDialog = false"
+          >
+            Cancel Routine
+          </v-btn>
+      </v-card>
+    </v-dialog>
+  </div>
   </div>
 </template>
 
@@ -19,6 +48,7 @@ export default {
   },
   data() {
     return {
+      newRoutineDialog: false,
       selected: [],
       exerciseList: [
         {
@@ -67,5 +97,14 @@ export default {
 <style>
 .dis {
   display: none;
+}
+
+.v-application .light-blue {
+  height: 30px;
+}
+
+.v-application .light-blue.lighten-4 {
+  font-weight: bold;
+  color: #039BE5;
 }
 </style>
