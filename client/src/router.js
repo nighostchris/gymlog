@@ -4,7 +4,8 @@ import Home from './views/Home.vue';
 import RegisterBox from './components/RegisterBox.vue';
 import Record from './components/Record.vue';
 import Dashboard from './views/Dashboard.vue';
-import ExerciseSearch from './components/ExerciseSearch.vue';
+// import ExerciseSearch from './components/ExerciseSearch.vue';
+import RoutinePlanning from './components/RoutinePlanning.vue';
 
 Vue.use(Router);
 
@@ -30,7 +31,7 @@ export default new Router({
     {
       path: '/exercise',
       name: 'exercise',
-      component: ExerciseSearch,
+      component: RoutinePlanning,
     },
     {
       path: '/dashboard',
