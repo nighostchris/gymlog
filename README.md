@@ -1,4 +1,6 @@
 # GymLog
+---
+[![Netlify Status](https://api.netlify.com/api/v1/badges/94d94cfc-2cbf-43df-8f42-35327ddb779b/deploy-status)](https://app.netlify.com/sites/dreamy-archimedes-5cd57a/deploys)
 
 GymLog is a web-app for recording personal workout data and diet.
 
@@ -35,3 +37,5 @@ Not Yet Finish
 
 ### Traps during development
 1. When using vue-router, the VueRouter object created need to be named as router before passing it to Vue instance and make use of it. Otherwise "Uncaught TypeError: Cannot read property 'matched' of undefined" will appear.
+2. Vue-router history mode will only work when the setting of server is correct. For Netlify case, we need to add the _redirect file.
+3. The property of "publicPath: './'" needs to be set in vue.config.js in order for webpack to load js and css file into index.html corrctly
