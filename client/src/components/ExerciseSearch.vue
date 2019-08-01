@@ -1,6 +1,13 @@
 <template>
   <v-layout justify-center fill-height>
     <v-flex xs8 md6 lg6 xl6>
+      <v-btn
+        text icon color="black"
+        @click="closeExerciseSearchDialog"
+        class="close-btn"
+      >
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
       <v-text-field
         class="pt-3"
         label="Search"
@@ -104,6 +111,9 @@ export default {
     changeSelectedExercise(i) {
       this.$emit('changeSelectedExercise', i);
     },
+    closeExerciseSearchDialog() {
+      this.$emit('closeExerciseSearchDialog');
+    },
   },
   computed: {
     filterExercise() {
@@ -178,5 +188,11 @@ export default {
 
 .itemHeight {
   min-height: 36px;
+}
+
+.close-btn {
+  position: absolute;
+  left: 20px;
+  top: 18px;
 }
 </style>

@@ -136,6 +136,7 @@
         :bodyPart="bodyPart"
         :tools="tools"
         @changeSelectedExercise="updateSelectedExercise($event)"
+        @closeExerciseSearchDialog="updateExerciseSearchDialog"
       />
     </v-dialog>
   </div>
@@ -205,6 +206,9 @@ export default {
     };
   },
   methods: {
+    updateExerciseSearchDialog() {
+      this.exerciseSearchDialog = false;
+    },
     updateSelectedExercise(i) {
       const existed = this.selected.indexOf(i);
 
@@ -321,10 +325,6 @@ export default {
 
 .button-group {
   justify-content: center;
-}
-
-.one-set {
-  width: 80%;
 }
 
 .text-align-field {
