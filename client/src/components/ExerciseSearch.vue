@@ -1,5 +1,5 @@
 <template>
-  <v-layout justify-center>
+  <v-layout justify-center fill-height>
     <v-flex xs8 md6 lg6 xl6>
       <v-text-field
         class="pt-3"
