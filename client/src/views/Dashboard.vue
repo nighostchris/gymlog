@@ -48,7 +48,9 @@ export default {
 <style scoped>
 @media only screen and (min-width: 600px) {
   .container--fluid {
-    max-width: 60%;
+    width: 60%;
+    position: absolute;
+    left: 20%;
   }
 
   .v-bottom-navigation--fixed {
