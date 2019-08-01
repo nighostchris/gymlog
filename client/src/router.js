@@ -1,11 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
 import RegisterBox from './components/RegisterBox.vue';
-import Record from './components/Record.vue';
 import Dashboard from './views/Dashboard.vue';
-// import ExerciseSearch from './components/ExerciseSearch.vue';
-import RoutinePlanning from './components/RoutinePlanning.vue';
 
 Vue.use(Router);
 
@@ -15,36 +11,13 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'dashboard',
+      component: Dashboard,
     },
     {
       path: '/test',
       name: 'test',
       component: RegisterBox,
-    },
-    {
-      path: '/record',
-      name: 'record',
-      component: Record,
-    },
-    {
-      path: '/exercise',
-      name: 'exercise',
-      component: RoutinePlanning,
-    },
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: Dashboard,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
     },
   ],
 });
