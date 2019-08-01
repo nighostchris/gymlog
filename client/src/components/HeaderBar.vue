@@ -1,5 +1,9 @@
 <template>
-  <v-toolbar max-height="60px" color="red darken-1">
+  <v-toolbar
+    max-height="60px"
+    color="grey darken-1"
+    elevation="0"
+  >
     <v-toolbar-title class="font-weight-light headline white--text">
       GymLog
     </v-toolbar-title>
@@ -24,7 +28,7 @@ export default {
   position: fixed;
 }
 
-.v-toolbar__content {
+>>> .v-toolbar__content {
   justify-content: center;
 }
 </style>

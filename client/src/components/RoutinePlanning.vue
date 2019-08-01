@@ -116,7 +116,7 @@
             <v-btn
               depressed
               color="pink lighten-4"
-              class="button-width mt-3"
+              class="button-width mt-3 mb-7"
               @click="newRoutineDialog = false"
             >
               Cancel Routine
@@ -308,6 +308,12 @@ export default {
 
 >>> .v-btn__content {
   font-weight: bold;
+}
+
+>>> .v-dialog--fullscreen {
+  top: 56px;
+  height: calc(100% - 114px);
+  box-shadow: unset;
 }
 
 .exercise-title {
