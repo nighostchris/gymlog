@@ -8,19 +8,19 @@
           v-model="bottomController"
           fixed
         >
-          <v-btn value="recent">
-            <span>Recent</span>
-            <v-icon>mdi-history</v-icon>
+          <v-btn value="analysis">
+            <span>Analysis</span>
+            <v-icon>mdi-chart-bar</v-icon>
           </v-btn>
 
-          <v-btn value="favorites">
-            <span>Favorites</span>
-            <v-icon>mdi-favorite</v-icon>
+          <v-btn value="routine">
+            <span>Routine</span>
+            <v-icon>mdi-recycle</v-icon>
           </v-btn>
 
-          <v-btn value="nearby">
-            <span>Nearby</span>
-            <v-icon>mdi-place</v-icon>
+          <v-btn value="exercise">
+            <span>Exercise</span>
+            <v-icon>mdi-plus</v-icon>
           </v-btn>
         </v-bottom-navigation>
       </v-layout>
@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      bottomController: 'recent',
+      bottomController: 'routine',
     };
   },
 };

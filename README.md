@@ -1,8 +1,15 @@
-# GymLog
+# GymLog (Last Update: 1/8/2019 21:44)
 ---
 [![Netlify Status](https://api.netlify.com/api/v1/badges/94d94cfc-2cbf-43df-8f42-35327ddb779b/deploy-status)](https://app.netlify.com/sites/dreamy-archimedes-5cd57a/deploys)
 
 GymLog is a web-app for recording personal workout data and diet.
+
+### Urgent To-do
+- [] Possibly Date-picker for routine planning?
+- [] Allow change of routine name and description
+- [] UI for the dashboard front page
+- [] User management page
+- [] Lot more.................
 
 ### Arch
 
