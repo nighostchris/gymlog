@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div style="width: 80%">
     <v-btn
-      color="light-blue darken-1 font-weight-bold"
+      color="light-blue lighten-1"
       dark
       @click="newRoutineDialog = true"
     >
@@ -245,6 +245,14 @@ export default {
 </script>
 
 <style scoped>
+.v-application .light-blue.lighten-1 {
+  width: 100%;
+}
+
+.v-application .light-blue.lighten-1 >>> .v-btn__content {
+  font-weight: 500px;
+}
+
 .v-application .light-blue.lighten-4 {
   font-weight: bold;
   color: #039BE5;
@@ -312,7 +320,6 @@ export default {
 
 >>> .v-dialog--fullscreen {
   top: 60px;
-  width: 60%;
   box-shadow: unset;
   height: calc(100% - 118px);
 }
@@ -320,6 +327,7 @@ export default {
 @media only screen and (min-width: 500px) {
   >>> .v-dialog--fullscreen {
     left: 20%;
+    width: 60%;
   }
 }
 
