@@ -5,9 +5,9 @@
 GymLog is a web-app for recording personal workout data and diet.
 
 ### Urgent To-do
-- [ ] Possibly Date-picker for routine planning?
-- [ ] Allow change of routine name and description
-- [ ] UI for the dashboard front page
+- [ ] Add date picker in routine planning dialog
+- [ ] Sync the routine plan to the dashboard page
+- [x] UI for the dashboard front page
 - [ ] User management page
 - [ ] Lot more.................
 

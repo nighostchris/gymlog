@@ -13,12 +13,24 @@
       hide-overlay
     >
       <v-card>
-        <v-list-item>
-          <v-list-item-content>
-            <v-list-item-title>New Routine</v-list-item-title>
-            <v-list-item-subtitle>Remarks</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
+        <v-layout column style="padding: 0 16px">
+          <v-text-field
+            solo
+            flat
+            hide-details
+            v-model="routineName"
+            class="routine-name"
+          >
+          </v-text-field>
+          <v-text-field
+            solo
+            flat
+            hide-details
+            v-model="routineRemarks"
+            class="routine-remarks"
+          >
+          </v-text-field>
+        </v-layout>
         <v-list>
           <v-list-item
             v-for="(set, index) in sets"
@@ -151,6 +163,8 @@ export default {
   },
   data() {
     return {
+      routineName: 'New Routine',
+      routineRemarks: 'Remarks',
       newRoutineDialog: false,
       exerciseSearchDialog: false,
       selected: [0, 1],
@@ -269,11 +283,6 @@ export default {
   border-radius: 0px;
 }
 
-.v-list-item__title{
-  font-size: 20px;
-  font-weight: bold;
-}
-
 .v-list-item__content {
   padding: 30px 0 30px 20px;
 }
@@ -371,5 +380,35 @@ export default {
 >>> .v-btn--fab.v-size--default {
   height: 24px;
   width: 24px;
+}
+
+.routine-name {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 30px 0px 5px 20px;
+}
+
+.routine-name >>> .v-input__slot {
+  background-color: white !important;
+}
+
+.routine-name >>> input {
+  text-align: left !important;
+}
+
+.routine-remarks {
+  width: 100%;
+  font-size: 14px;
+  padding: 0px 0px 30px 20px;
+}
+
+.routine-remarks >>> .v-input__slot {
+  background-color: white !important;
+}
+
+.routine-remarks >>> input {
+  text-align: left !important;
+  color: rgba(0, 0, 0, 0.54) !important;
 }
 </style>
