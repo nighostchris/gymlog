@@ -5,8 +5,9 @@
       <routine-planning class="middle-content" />
       <v-layout justify-center>
         <v-bottom-navigation
-          v-model="bottomController"
+          dark
           fixed
+          v-model="bottomController"
         >
           <v-btn value="analysis">
             <span>Analysis</span>
@@ -18,9 +19,9 @@
             <v-icon>mdi-recycle</v-icon>
           </v-btn>
 
-          <v-btn value="exercise">
-            <span>Exercise</span>
-            <v-icon>mdi-plus</v-icon>
+          <v-btn value="setting">
+            <span>Setting</span>
+            <v-icon>mdi-settings</v-icon>
           </v-btn>
         </v-bottom-navigation>
       </v-layout>
@@ -46,7 +47,7 @@ export default {
 </script>
 
 <style scoped>
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 500px) {
   .container--fluid {
     width: 60%;
     position: absolute;
@@ -60,7 +61,9 @@ export default {
 }
 
 .middle-content {
-  padding-top: 60px;
-  padding-bottom: 56px;
+  top: 60px;
+  width: 100%;
+  position: absolute;
+  height: calc(100% - 118px);
 }
 </style>

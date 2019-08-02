@@ -30,5 +30,6 @@ export default {
 
 >>> .v-toolbar__content {
   justify-content: center;
+  height: 64px !important;
 }
 </style>

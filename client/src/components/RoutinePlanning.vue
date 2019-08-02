@@ -311,9 +311,16 @@ export default {
 }
 
 >>> .v-dialog--fullscreen {
-  top: 56px;
-  height: calc(100% - 114px);
+  top: 60px;
+  width: 60%;
   box-shadow: unset;
+  height: calc(100% - 118px);
+}
+
+@media only screen and (min-width: 500px) {
+  >>> .v-dialog--fullscreen {
+    left: 20%;
+  }
 }
 
 .exercise-title {
