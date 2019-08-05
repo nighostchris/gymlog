@@ -12,10 +12,11 @@
           ></v-date-picker>
         </v-layout>
 
-        <v-layout column style="padding: 0 16px">
+        <v-layout column style="width: 290px; padding-bottom: 10px">
           <v-text-field
             solo
             flat
+            disabled
             hide-details
             v-model="routine.name"
             class="routine-name"
@@ -24,6 +25,7 @@
           <v-text-field
             solo
             flat
+            disabled
             hide-details
             v-model="routine.remark"
             class="routine-remarks"
@@ -40,7 +42,7 @@
                 {{ routine.exercise[index] }}
               </p>
               <v-list>
-                <v-layout class="one-set">
+                <v-layout>
                   <v-layout column align-center class="first-column">
                     <p style="font-weight: bold">Set</p>
                     <v-list-item
@@ -68,6 +70,7 @@
                       <v-text-field
                         solo
                         flat
+                        disabled
                         hide-details
                         v-model="s.weight"
                       >
@@ -84,6 +87,7 @@
                       <v-text-field
                         solo
                         flat
+                        disabled
                         hide-details
                         v-model="s.reps"
                       >
@@ -140,12 +144,17 @@ export default {
       workoutDates: ['2019-08-01', '2019-08-03'],
       routine: {
         name: 'Arms-2',
-        remark: 'dfgdfg',
+        remark: 'my first workout routine recorded',
         exercise: ['Tricep Extension', 'Bicep Curl'],
         sets: [
           [
             {
               set: 1,
+              weight: 20,
+              reps: 8,
+            },
+            {
+              set: 2,
               weight: 20,
               reps: 8,
             },
@@ -190,9 +199,10 @@ export default {
 .middle-content {
   top: 60px;
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
   position: absolute;
   align-items: center;
+  background-color: white;
   height: calc(100% - 118px);
 }
 
@@ -202,5 +212,95 @@ export default {
 
 >>> .v-picker__body {
   max-height: 280px;
+}
+
+.v-text-field {
+  width: 50px;
+}
+
+.v-input >>> .v-input__slot {
+  height: 20px;
+  padding: 0px !important;
+  min-height: 0px !important;
+  background-color: #E0E0E0 !important;
+}
+
+.v-text-field >>> input {
+  text-align: center;
+}
+
+.v-sheet {
+  border-radius: 0px;
+}
+
+.v-list {
+  padding: 0px;
+  width: 290px;
+}
+
+>>> .v-input__control {
+  min-height: 0px !important;
+}
+
+.v-list-item {
+  padding: 0px;
+  min-height: 0px !important;
+}
+
+.v-input--is-disabled >>> input {
+  color: black;
+  font-weight: bold;
+}
+
+.exercise-title {
+  font-weight: bold;
+  color: #039BE5;
+  padding-bottom: 5px;
+}
+
+.set-item {
+  padding: 0px 0px 10px 0px;
+}
+
+.set-list {
+  padding: 0px 0px 20px 0px;
+}
+
+.first-column {
+  max-width: 23.89px;
+}
+
+.first-column >>> .v-list-item {
+  width: 23.89px;
+}
+
+.routine-name {
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 20px 0px 5px 0px;
+}
+
+.routine-name >>> .v-input__slot {
+  background-color: white !important;
+}
+
+.routine-name >>> input {
+  text-align: left !important;
+}
+
+.routine-remarks {
+  width: 100%;
+  font-size: 14px;
+  padding: 0px 0px 5px 0px;
+}
+
+.routine-remarks >>> .v-input__slot {
+  background-color: white !important;
+}
+
+.routine-remarks >>> input {
+  text-align: left !important;
+  color: rgba(0, 0, 0, 0.54) !important;
 }
 </style>
