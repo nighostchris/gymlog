@@ -3,7 +3,7 @@
     <v-btn
       color="light-blue lighten-1"
       dark
-      @click="newRoutineDialog = true"
+      @click="changeRoutineDialog"
     >
       Create New Routine
     </v-btn>
@@ -18,7 +18,7 @@
             solo
             flat
             hide-details
-            v-model="routineName"
+            v-model="routine.name"
             class="routine-name"
           >
           </v-text-field>
@@ -26,19 +26,19 @@
             solo
             flat
             hide-details
-            v-model="routineRemarks"
+            v-model="routine.remark"
             class="routine-remarks"
           >
           </v-text-field>
         </v-layout>
         <v-list>
           <v-list-item
-            v-for="(set, index) in sets"
+            v-for="(set, index) in routine.sets"
             :key="'exer-' + index"
           >
-            <v-list-item-content v-if="selected.length > 0" class="set-list">
+            <v-list-item-content v-if="routine.sets.length > 0" class="set-list">
               <p class="exercise-title">
-                {{ exerciseList[selected[index]].name }}
+                {{ routine.exercise[index] }}
               </p>
               <v-list>
                 <v-layout class="one-set">
@@ -129,7 +129,7 @@
               depressed
               color="pink lighten-4"
               class="button-width mt-3 mb-7"
-              @click="newRoutineDialog = false"
+              @click="changeRoutineDialog"
             >
               Cancel Routine
             </v-btn>
@@ -143,7 +143,7 @@
       hide-overlay
     >
       <ExerciseSearch
-        :selected="selected"
+        :selected="routine.exercise"
         :exerciseList="exerciseList"
         :bodyPart="bodyPart"
         :tools="tools"
@@ -158,16 +158,13 @@
 import ExerciseSearch from './ExerciseSearch.vue';
 
 export default {
+  props: ['newRoutineDialog', 'routine'],
   components: {
     ExerciseSearch,
   },
   data() {
     return {
-      routineName: 'New Routine',
-      routineRemarks: 'Remarks',
-      newRoutineDialog: false,
       exerciseSearchDialog: false,
-      selected: [0, 1],
       exerciseList: [
         {
           name: 'Tricep Extension',
@@ -196,42 +193,25 @@ export default {
         'Dumbell',
         'Cable',
       ],
-      sets: [
-        [
-          {
-            set: 1,
-            weight: 20,
-            reps: 8,
-          },
-          {
-            set: 2,
-            weight: 30,
-            reps: 8,
-          },
-        ],
-        [
-          {
-            set: 1,
-            weight: 20,
-            reps: 8,
-          },
-        ],
-      ],
     };
   },
   methods: {
     updateExerciseSearchDialog() {
       this.exerciseSearchDialog = false;
     },
+    changeRoutineDialog() {
+      this.$emit('changeRoutineDialog');
+    },
     updateSelectedExercise(i) {
-      const existed = this.selected.indexOf(i);
+      const { exercise } = this.routine;
+      const existed = exercise.indexOf(i);
 
       if (existed > -1) {
-        this.selected.splice(existed, 1);
-        this.sets.splice(existed, 1);
+        exercise.splice(existed, 1);
+        this.routine.sets.splice(existed, 1);
       } else {
-        this.selected.push(i);
-        this.sets.push([{
+        exercise.push(i);
+        this.routine.sets.push([{
           set: 1,
           weight: '',
           reps: '',
@@ -239,7 +219,7 @@ export default {
       }
     },
     addSet(index) {
-      const modifySet = this.sets[index];
+      const modifySet = this.routine.sets[index];
       const setLength = modifySet.length;
       modifySet.push({
         set: setLength + 1,
@@ -248,7 +228,7 @@ export default {
       });
     },
     removeSet(index, i) {
-      const modifySet = this.sets[index];
+      const modifySet = this.routine.sets[index];
       modifySet.splice(i, 1);
       for (let j = i; j < modifySet.length; j += 1) {
         modifySet[j].set -= 1;

@@ -4,7 +4,11 @@
       <header-bar />
       <v-layout column class="middle-content">
         <p class="start-workout py-4">Start Workout</p>
-        <routine-planning />
+        <routine-planning
+          :routine="routine"
+          :newRoutineDialog="newRoutineDialog"
+          @changeRoutineDialog="updateRoutineDialog"
+        />
         <p class="recent-routine pt-6 pb-2">Recent Routines</p>
         <v-layout wrap class="routine-layout">
           <v-card
@@ -15,6 +19,7 @@
             v-for="(r, i) in routines"
             :key="i"
             class="routine-card"
+            @click="updateSelectedRoutine(i)"
           >
             <v-card-title>{{ r.name }}</v-card-title>
             <v-card-text>{{ r.exercise.join(', ') }}</v-card-text>
@@ -58,27 +63,61 @@ export default {
   },
   data() {
     return {
+      newRoutineDialog: false,
       bottomController: 'routine',
+      routine: {
+        name: 'New Routine',
+        remark: 'Remarks',
+        exercise: [],
+        sets: [],
+      },
       routines: [
         {
           name: 'Arms-1',
-          exercise: ['Tricep Extension', 'Lateral Raise', 'Bicep Curl',
-            'Tricep Extension', 'Lateral Raise', 'Bicep Curl'],
+          remark: 'dfgdfg',
+          exercise: ['Tricep Extension'],
+          sets: [
+            [
+              {
+                set: 1,
+                weight: 20,
+                reps: 8,
+              },
+            ],
+          ],
         },
         {
           name: 'Arms-2',
-          exercise: ['Tricep Extension', 'Lateral Raise', 'Bicep Curl'],
-        },
-        {
-          name: 'Arms-3',
-          exercise: ['Tricep Extension', 'Lateral Raise', 'Bicep Curl'],
-        },
-        {
-          name: 'Arms-4',
-          exercise: ['Tricep Extension', 'Lateral Raise', 'Bicep Curl'],
+          remark: 'dfgdfg',
+          exercise: ['Tricep Extension', 'Bicep Curl'],
+          sets: [
+            [
+              {
+                set: 1,
+                weight: 20,
+                reps: 8,
+              },
+            ],
+            [
+              {
+                set: 1,
+                weight: 20,
+                reps: 8,
+              },
+            ],
+          ],
         },
       ],
     };
+  },
+  methods: {
+    updateRoutineDialog() {
+      this.newRoutineDialog = !this.newRoutineDialog;
+    },
+    updateSelectedRoutine(i) {
+      this.routine = this.routines[i];
+      this.newRoutineDialog = !this.newRoutineDialog;
+    },
   },
 };
 </script>

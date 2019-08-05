@@ -71,7 +71,7 @@
             </v-list-item-content>
             <v-list-item-action>
               <v-icon
-                v-if="selected.indexOf(i) < 0"
+                v-if="selected.indexOf(exercise.name) < 0"
                 color="grey lighten-1"
               >
                 mdi-check
@@ -109,7 +109,7 @@ export default {
       this.search = '';
     },
     changeSelectedExercise(i) {
-      this.$emit('changeSelectedExercise', i);
+      this.$emit('changeSelectedExercise', this.exerciseList[i].name);
     },
     closeExerciseSearchDialog() {
       this.$emit('closeExerciseSearchDialog');
