@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import RegisterBox from './components/RegisterBox.vue';
+import Login from './views/Login.vue';
+import Register from './views/Register.vue';
 import Dashboard from './views/Dashboard.vue';
 import History from './views/History.vue';
 
@@ -12,6 +13,16 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'index',
+      component: Login,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: Register,
+    },
+    {
+      path: '/dashboard',
       name: 'dashboard',
       component: Dashboard,
     },
@@ -19,11 +30,6 @@ export default new Router({
       path: '/history',
       name: 'history',
       component: History,
-    },
-    {
-      path: '/test',
-      name: 'test',
-      component: RegisterBox,
     },
   ],
 });
