@@ -30,6 +30,45 @@
             class="routine-remarks"
           >
           </v-text-field>
+          <v-flex>
+            <v-dialog
+              ref="dialog"
+              persistent
+              full-width
+              width="290px"
+              class="dialog-margin-43"
+              v-model="dateDialog"
+              :return-value.sync="routine.date"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  readonly
+                  v-on="on"
+                  class="date-dialog"
+                  v-model="routine.date"
+                  prepend-icon="event"
+                >
+                </v-text-field>
+              </template>
+              <v-date-picker v-model="routine.date" scrollable>
+                <v-spacer></v-spacer>
+                <v-btn
+                  text
+                  color="light-blue darken-4"
+                  @click="dateDialog = false"
+                >
+                  Cancel
+                </v-btn>
+                <v-btn
+                  text
+                  color="light-blue darken-4"
+                  @click="$refs.dialog.save(routine.date)"
+                >
+                  OK
+                </v-btn>
+              </v-date-picker>
+            </v-dialog>
+          </v-flex>
         </v-layout>
         <v-list>
           <v-list-item
@@ -165,6 +204,7 @@ export default {
   data() {
     return {
       exerciseSearchDialog: false,
+      dateDialog: false,
       exerciseList: [
         {
           name: 'Tricep Extension',
@@ -380,7 +420,7 @@ export default {
 .routine-remarks {
   width: 100%;
   font-size: 14px;
-  padding: 0px 0px 30px 20px;
+  padding: 0px 0px 5px 20px;
 }
 
 .routine-remarks >>> .v-input__slot {
@@ -390,5 +430,16 @@ export default {
 .routine-remarks >>> input {
   text-align: left !important;
   color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.date-dialog {
+  margin-top: 0px;
+  padding-top: 0px;
+  width: 200px !important;
+  padding-bottom: 10px;
+}
+
+.date-dialog >>> .v-input__slot {
+  height: 30px;
 }
 </style>

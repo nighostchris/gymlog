@@ -68,6 +68,7 @@ export default {
       routine: {
         name: 'New Routine',
         remark: 'Remarks',
+        date: new Date().toISOString().substr(0, 10),
         exercise: [],
         sets: [],
       },
