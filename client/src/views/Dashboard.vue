@@ -30,19 +30,24 @@
         <v-bottom-navigation
           dark
           fixed
-          v-model="bottomController"
+          :value="2"
         >
-          <v-btn value="analysis">
+          <v-btn>
             <span>Analysis</span>
             <v-icon>mdi-chart-bar</v-icon>
           </v-btn>
 
-          <v-btn value="routine">
+          <v-btn to="/history">
+            <span>History</span>
+            <v-icon>mdi-history</v-icon>
+          </v-btn>
+
+          <v-btn>
             <span>Routine</span>
             <v-icon>mdi-recycle</v-icon>
           </v-btn>
 
-          <v-btn value="setting">
+          <v-btn>
             <span>Setting</span>
             <v-icon>mdi-settings</v-icon>
           </v-btn>
