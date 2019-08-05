@@ -13,10 +13,12 @@ exports.generateToken = (payload, key, options) => {
 	return jwt.sign(payload, key, options);
 };
 
-exports.validateToken = (token, key) => {
+exports.validateToken = (req, res) => {
 	try {
-		return jwt.verify(token, key);
-	} catch (err) {
-		return err;
+		const result = jwt.verify(req.body.token, secretJson.secret);
+		res.json({ verify: result });
+	} catch (e) {
+		res.status(400);
+		res.json({ err: e.message });
 	}
 };
