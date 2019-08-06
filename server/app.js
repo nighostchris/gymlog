@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const loginFunctions = require('./database/functions/login');
+const loginFunctions = require('./database/functions/login');
 const tokenFunctions = require('./database/functions/token');
 const registerFunctions = require('./database/functions/register');
 
@@ -12,6 +12,7 @@ app.route('/api/v1/users')
 	.post(registerFunctions.validate, registerFunctions.register);
 
 app.route('/api/v1/token')
+	.get(loginFunctions.login)
 	.post(tokenFunctions.validateToken);
 
 app.listen(3000, () => {

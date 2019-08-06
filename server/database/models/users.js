@@ -15,6 +15,15 @@ module.exports = (sequelize, DataTypes) => {
 		surname: {
 			type: DataTypes.STRING(20),
 		},
+		salt: {
+			type: DataTypes.STRING,
+		},
+		hash: {
+			type: DataTypes.STRING,
+		},
+		permission: {
+			type: DataTypes.INTEGER,
+		},
 	});
 
 	return Users;

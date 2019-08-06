@@ -1,8 +1,8 @@
-const sequelize = require('../models/index');
 const bcrypt = require('./bcrypt');
 const token = require('./token');
+const models = require('../models');
 
-const Tokens = sequelize.import('../models/tokens.js');
+const Users = models.users;
 
 const createToken = (data, res) => {
 	const payload = {
@@ -16,7 +16,7 @@ const createToken = (data, res) => {
 };
 
 exports.login = (req, res) => {
-	Tokens.findOne({
+	Users.findOne({
 		where: {
 			username: req.body.username,
 		},

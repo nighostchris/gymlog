@@ -1,6 +1,6 @@
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable('tokens', {
+		return queryInterface.createTable('users', {
 			id: {
 				type: Sequelize.INTEGER,
 				primaryKey: true,
@@ -10,12 +10,21 @@ module.exports = {
 				type: Sequelize.STRING(20),
 				unique: true,
 			},
-			salt: {
-				type: Sequelize.STRING,
+			firstname: {
+				type: Sequelize.STRING(20),
 			},
-			hash: {
-				type: Sequelize.STRING,
-			},
+			surname: {
+				type: Sequelize.STRING(20),
+      },
+      salt: {
+        type: Sequelize.STRING,
+      },
+      hash: {
+        type: Sequelize.STRING,
+      },
+      permission: {
+        type: Sequelize.INTEGER,
+      },
 			createdAt: {
 				type: Sequelize.DATE,
 				allowNull: false,
@@ -28,6 +37,6 @@ module.exports = {
 	},
 
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.dropTable('tokens');
+		return queryInterface.dropTable('users');
 	},
 };

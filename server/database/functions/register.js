@@ -2,24 +2,21 @@ const { check, matchedData, validationResult } = require('express-validator');
 const bcrypt = require('./bcrypt');
 const models = require('../models');
 
-const Tokens = models.tokens;
 const Users = models.users;
 
 const createUser = (input, res) => {
+	const hashedPassword = bcrypt.generateHashedPassword(input.password);
+
 	const user = {
 		username: input.username,
 		firstname: input.firstname,
 		surname: input.surname,
+		salt: hashedPassword.salt,
+		hash: hashedPassword.hashedPassword,
+		permission: 1,
 	};
-	const hashedPassword = bcrypt.generateHashedPassword(input.password);
 
-	Users.create(user).then((result) => {
-		return Tokens.create({
-			username: result.username,
-			salt: hashedPassword.salt,
-			hash: hashedPassword.hashedPassword,
-		});
-	}).then((success) => {
+	Users.create(user).then((success) => {
 		res.status(200);
 		res.json({ success });
 	}).catch((e) => {
@@ -31,7 +28,7 @@ const createUser = (input, res) => {
 exports.validate = [
 	check('username')
 		.custom((value) => {
-			return Tokens.findOne({ where: { username: value } }).then((result) => {
+			return Users.findOne({ where: { username: value } }).then((result) => {
 				if (result) {
 					throw new Error('Username not available');
 				}
@@ -43,9 +40,9 @@ exports.validate = [
 		.matches(/\d/)
 		.withMessage('Must contain at least 1 number'),
 	check('firstname')
-		.isLength({ min: 1 }),
+		.isLength({ min: 1 }).withMessage('First Name cannot be empty'),
 	check('surname')
-		.isLength({ min: 1 }),
+		.isLength({ min: 1 }).withMessage('Surname cannot be empty'),
 ];
 
 exports.register = (req, res) => {
