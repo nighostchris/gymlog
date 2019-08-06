@@ -3,16 +3,13 @@
     <v-layout column>
       <header-bar />
       <v-layout column class="middle-content">
-        <v-layout justify-center style="max-height: 400px">
+        <v-layout column style="width: 290px">
           <v-date-picker
             class="mt-4"
             v-model="date"
             min="2019-08-01"
             :allowed-dates="allowedDates"
           ></v-date-picker>
-        </v-layout>
-
-        <v-layout column style="width: 290px; padding-bottom: 10px">
           <v-text-field
             solo
             flat
@@ -31,74 +28,74 @@
             class="routine-remarks"
           >
           </v-text-field>
+          <v-list>
+            <v-list-item
+              v-for="(set, index) in routine.sets"
+              :key="'exer-' + index"
+            >
+              <v-list-item-content v-if="routine.sets.length > 0" class="set-list">
+                <p class="exercise-title">
+                  {{ routine.exercise[index] }}
+                </p>
+                <v-list>
+                  <v-layout>
+                    <v-layout column align-center class="first-column">
+                      <p style="font-weight: bold">Set</p>
+                      <v-list-item
+                        v-for="(s, i) in set"
+                        :key="i"
+                        class="set-item"
+                      >
+                        <v-text-field
+                          solo
+                          flat
+                          disabled
+                          hide-details
+                          v-model="s.set"
+                        >
+                        </v-text-field>
+                      </v-list-item>
+                    </v-layout>
+                    <v-layout column align-center>
+                      <p style="font-weight: bold">kg/lb</p>
+                      <v-list-item
+                        v-for="(s, i) in set"
+                        :key="i"
+                        class="set-item"
+                      >
+                        <v-text-field
+                          solo
+                          flat
+                          disabled
+                          hide-details
+                          v-model="s.weight"
+                        >
+                        </v-text-field>
+                      </v-list-item>
+                    </v-layout>
+                    <v-layout column align-center>
+                      <p style="font-weight: bold">Reps</p>
+                      <v-list-item
+                        v-for="(s, i) in set"
+                        :key="i"
+                        class="set-item"
+                      >
+                        <v-text-field
+                          solo
+                          flat
+                          disabled
+                          hide-details
+                          v-model="s.reps"
+                        >
+                        </v-text-field>
+                      </v-list-item>
+                    </v-layout>
+                  </v-layout>
+                </v-list>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </v-layout>
-        <v-list>
-          <v-list-item
-            v-for="(set, index) in routine.sets"
-            :key="'exer-' + index"
-          >
-            <v-list-item-content v-if="routine.sets.length > 0" class="set-list">
-              <p class="exercise-title">
-                {{ routine.exercise[index] }}
-              </p>
-              <v-list>
-                <v-layout>
-                  <v-layout column align-center class="first-column">
-                    <p style="font-weight: bold">Set</p>
-                    <v-list-item
-                      v-for="(s, i) in set"
-                      :key="i"
-                      class="set-item"
-                    >
-                      <v-text-field
-                        solo
-                        flat
-                        disabled
-                        hide-details
-                        v-model="s.set"
-                      >
-                      </v-text-field>
-                    </v-list-item>
-                  </v-layout>
-                  <v-layout column align-center>
-                    <p style="font-weight: bold">kg/lb</p>
-                    <v-list-item
-                      v-for="(s, i) in set"
-                      :key="i"
-                      class="set-item"
-                    >
-                      <v-text-field
-                        solo
-                        flat
-                        disabled
-                        hide-details
-                        v-model="s.weight"
-                      >
-                      </v-text-field>
-                    </v-list-item>
-                  </v-layout>
-                  <v-layout column align-center>
-                    <p style="font-weight: bold">Reps</p>
-                    <v-list-item
-                      v-for="(s, i) in set"
-                      :key="i"
-                      class="set-item"
-                    >
-                      <v-text-field
-                        solo
-                        flat
-                        disabled
-                        hide-details
-                        v-model="s.reps"
-                      >
-                      </v-text-field>
-                    </v-list-item>
-                  </v-layout>
-                </v-layout>
-              </v-list>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
       </v-layout>
       <v-layout justify-center>
         <v-bottom-navigation
@@ -194,20 +191,24 @@ export default {
   .routine-layout {
     max-height: 150px !important;
   }
+
+  .middle-content {
+    width: 60% !important;
+  }
 }
 
 .middle-content {
   top: 60px;
   width: 100%;
-  overflow-y: scroll;
-  position: absolute;
+  position: fixed;
+  overflow-y: auto;
   align-items: center;
   background-color: white;
   height: calc(100% - 118px);
 }
 
 >>> .v-picker {
-  height: 380px;
+  min-height: 380px;
 }
 
 >>> .v-picker__body {
@@ -277,6 +278,7 @@ export default {
 .routine-name {
   width: 100%;
   font-size: 20px;
+  min-height: 45px;
   font-weight: bold;
   padding: 20px 0px 5px 0px;
 }
@@ -292,7 +294,8 @@ export default {
 .routine-remarks {
   width: 100%;
   font-size: 14px;
-  padding: 0px 0px 5px 0px;
+  min-height: 35px;
+  padding: 0px 0px 15px 0px;
 }
 
 .routine-remarks >>> .v-input__slot {

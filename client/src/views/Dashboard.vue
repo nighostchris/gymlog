@@ -144,12 +144,17 @@ export default {
   .routine-layout {
     max-height: 150px !important;
   }
+
+  .middle-content {
+    width: 60% !important;
+  }
 }
 
 .middle-content {
   top: 60px;
   width: 100%;
-  position: absolute;
+  position: fixed;
+  overflow-y: auto;
   align-items: center;
   height: calc(100% - 118px);
 }
