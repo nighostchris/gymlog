@@ -38,7 +38,50 @@ Another terminal for running the client
 ```
 
 ### API route
-Not Yet Finish
+---
+#### 1. Users
+##### Register
+Register a user.
+
+|Method|URL|
+|------|---|
+|POST|api/v1/users|
+
+|Status|Response|
+|------|--------|
+| 200 |`{ "success": "User registered" }`|
+| 400 |`{ "err": "Username not available" }`|
+||`{ "err": "Minimum 8 characters" }`|
+||`{ "err": "Must contain at least 1 number" }`|
+||`{ "err": "First Name cannot be empty" }`|
+||`{ "err": "Surname cannot be empty" }`|
+
+#### 2. Tokens
+##### Login
+Login and obtain token.
+
+|Method|URL|
+|------|---|
+|GET|api/v1/users|
+
+|Status|Response|
+|------|--------|
+| 200 |`{ "token": <token> }`|
+| 400 |`{ "err": "Invalid password" }`|
+||`{ "err": "Non-existing user" }`|
+
+##### Verify
+Verify the token.
+
+|Method|URL|
+|------|---|
+|POST|api/v1/users|
+
+|Status|Response|
+|------|--------|
+| 200 |`{ "verify": { "iss": "gymlog-auth", "sub": "testing", "firstname": "test", "iat": 1565185005, "exp": 1565271405 } }`|
+| 400 |`{ "err": <error provided by jwt> }`|
+---
 
 ### Traps during development
 1. When using vue-router, the VueRouter object created need to be named as router before passing it to Vue instance and make use of it. Otherwise "Uncaught TypeError: Cannot read property 'matched' of undefined" will appear.

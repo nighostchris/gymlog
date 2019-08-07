@@ -8,16 +8,16 @@ module.exports = (sequelize, DataTypes) => {
 		name: {
 			type: DataTypes.STRING,
 			unique: true,
-        },
-        part: {
-            type: DataTypes.STRING(20),
-        },
-        tool: {
-            type: DataTypes.STRING(20),
-        },
-        avatar: {
-            type: DataTypes.STRING,
-        },
+		},
+		part: {
+			type: DataTypes.STRING(20),
+		},
+		tool: {
+			type: DataTypes.STRING(20),
+		},
+		avatar: {
+			type: DataTypes.STRING,
+		},
 	});
 
 	return Exercises;

@@ -8,6 +8,7 @@ const createToken = (data, res) => {
 	const payload = {
 		iss: 'gymlog-auth',
 		sub: data.username,
+		firstname: data.firstname,
 	};
 
 	const secretKey = token.getSecret();
@@ -28,8 +29,10 @@ exports.login = (req, res) => {
 
 		const { password } = req.body;
 		const { salt, hash } = data;
-
-		if (!bcrypt.validatePassword(password, salt, hash)) {
+		const newHashed = bcrypt.generateHashedPassword(password, salt).hashedPassword;
+		const compareResult = (newHashed === hash);
+		
+		if (!compareResult) {
 			res.status(400);
 			res.json({ err: 'Invalid password' });
 		} else {

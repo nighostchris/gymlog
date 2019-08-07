@@ -4,8 +4,8 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
 			autoIncrement: true,
-        },
-        user_id: {
+		},
+		user_id: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: 'Users',
@@ -14,19 +14,19 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		name: {
 			type: DataTypes.STRING,
-        },
-        remark: {
+		},
+		remark: {
 			type: DataTypes.STRING(30),
-        },
-        date: {
-            type: DataTypes.STRING,
-        },
-        exercise: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
-        },
-        sets: {
-            type: DataTypes.ARRAY(DataTypes.ARRAY(DataTypes.JSON)),
-        },
+		},
+		date: {
+			type: DataTypes.STRING,
+		},
+		exercise: {
+			type: DataTypes.ARRAY(DataTypes.STRING),
+		},
+		sets: {
+			type: DataTypes.ARRAY(DataTypes.ARRAY(DataTypes.JSON)),
+		},
 	});
 
 	return Routines;

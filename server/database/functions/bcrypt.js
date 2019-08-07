@@ -12,7 +12,3 @@ exports.generateHashedPassword = (password, s) => {
 		hashedPassword: hash,
 	};
 };
-
-exports.validatePassword = (password, salt, hashedPassword) => {
-	return this.generateHashedPassword(password, salt) === hashedPassword;
-};

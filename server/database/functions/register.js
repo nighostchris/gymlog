@@ -18,7 +18,7 @@ const createUser = (input, res) => {
 
 	Users.create(user).then((success) => {
 		res.status(200);
-		res.json({ success });
+		res.json({ "success": "User registered" });
 	}).catch((e) => {
 		res.status(500);
 		res.send(e);
@@ -49,7 +49,7 @@ exports.register = (req, res) => {
 	const error = validationResult(req);
 	if (!error.isEmpty()) {
 		res.status(400);
-		res.json(error.array());
+		res.json({ "err": error.array()[0].msg });
 	} else {
 		const input = matchedData(req);
 		createUser(input, res);
