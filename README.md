@@ -1,4 +1,4 @@
-# GymLog (Last Update: 8/8/2019 15:51)
+# GymLog (Last Update: 8/8/2019 22:19)
 ---
 [![Netlify Status](https://api.netlify.com/api/v1/badges/94d94cfc-2cbf-43df-8f42-35327ddb779b/deploy-status)](https://app.netlify.com/sites/dreamy-archimedes-5cd57a/deploys)
 
@@ -18,6 +18,7 @@ This repo is basically seperated into 2 folders, server and client, which make u
 * [Express](https://expressjs.com/) - minimalist web framework for Node.js
 * [PostgreSQL](https://www.postgresql.org/) - open source relational database
 * [Sequelize](http://docs.sequelizejs.com/) - promise-based Node.js ORM
+* [Axios](https://github.com/axios/axios) - promise-based HTTP client for browser and node.js
 
 ### Installation
 Global npm package required
@@ -40,8 +41,10 @@ Server deployment in heroku (Remember to put config.json and secret.json into di
 ```sh
 > heroku login
 > heroku git:remote <heroku_app_name>
+> git checkout -b <new_branch_name>
 > npm run local-build
-> git subtree push --prefix server heroku master
+> git subtree split --prefix=server -b <new_branch_name>
+> git push -f heroku <new_branch_name>:master
 ```
 
 ### API route

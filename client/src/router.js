@@ -44,8 +44,7 @@ router.beforeEach((to, from, next) => {
       axios.post('https://gymlog-backend.herokuapp.com/api/v1/token', {
         token: localToken,
       }).then((res) => {
-        console.log(res);
-        if ('verify' in res) {
+        if ('verify' in res.data) {
           next();
         } else {
           next('/');
