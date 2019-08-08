@@ -20,7 +20,7 @@ module.exports = {
 				type: Sequelize.STRING(30),
 			},
 			exercise: {
-				type: Sequelize.ARRAY(Sequelize.STRING),
+				type: Sequelize.STRING,
 			},
 			createdAt: {
 				type: Sequelize.DATE,

@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 		},
 		exercise: {
-			type: DataTypes.ARRAY(DataTypes.STRING),
+			type: DataTypes.STRING,
 		},
 		sets: {
-			type: DataTypes.ARRAY(DataTypes.ARRAY(DataTypes.JSON)),
+			type: DataTypes.STRING,
 		},
 	});
 

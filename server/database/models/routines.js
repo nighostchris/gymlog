@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING(30),
 		},
 		exercise: {
-			type: DataTypes.ARRAY(DataTypes.STRING),
+			type: DataTypes.STRING,
 		},
 	});
 

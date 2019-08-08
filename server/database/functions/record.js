@@ -32,15 +32,15 @@ exports.addRecord = (req, res) => {
     const record = {
       user_id: data.id,
       date: req.body.date,
-      exercise: JSON.parse(req.body.exercise),
-      sets: JSON.parse(req.body.sets),
+      exercise: req.body.exercise,
+      sets: req.body.sets,
     };
 
     const routine = {
       user_id: data.id,
       name: req.body.name,
       remark: req.body.remark,
-      exercise: JSON.parse(req.body.exercise),
+      exercise: req.body.exercise,
     };
 
     Routines.create(routine).then(() => {

@@ -17,10 +17,10 @@ module.exports = {
 				type: Sequelize.STRING,
 			},
 			exercise: {
-				type: Sequelize.ARRAY(Sequelize.STRING),
+				type: Sequelize.STRING,
 			},
 			sets: {
-				type: Sequelize.ARRAY(Sequelize.ARRAY(Sequelize.JSON)),
+				type: Sequelize.STRING,
 			},
 			createdAt: {
 				type: Sequelize.DATE,
