@@ -36,6 +36,12 @@ Another terminal for running the client
 > npm install
 > npm run serve
 ```
+Server deployment in heroku
+```sh
+> heroku login
+> heroku git:remote <heroku_app_name>
+> git subtree push --prefix server heroku master
+```
 
 ### API route
 ---

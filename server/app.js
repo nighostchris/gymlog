@@ -19,6 +19,6 @@ app.route('/api/v1/token')
 app.route('/api/v1/record')
 	.post(recordFunctions.addRecord);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
 	console.log('API available on port 3000');
 });
