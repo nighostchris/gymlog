@@ -1,6 +1,6 @@
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable('routines', {
+		return queryInterface.createTable('records', {
 			id: {
 				type: Sequelize.INTEGER,
 				primaryKey: true,
@@ -12,12 +12,6 @@ module.exports = {
 					model: 'users',
 					key: 'id'
 				},
-			},
-			name: {
-				type: Sequelize.STRING,
-			},
-			remark: {
-				type: Sequelize.STRING(30),
 			},
 			date: {
 				type: Sequelize.STRING,
@@ -40,6 +34,6 @@ module.exports = {
 	},
 
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.dropTable('routines');
+		return queryInterface.dropTable('records');
 	},
 };

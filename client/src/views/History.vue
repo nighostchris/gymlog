@@ -10,25 +10,7 @@
             min="2019-08-01"
             :allowed-dates="allowedDates"
           ></v-date-picker>
-          <v-text-field
-            solo
-            flat
-            disabled
-            hide-details
-            v-model="routine.name"
-            class="routine-name"
-          >
-          </v-text-field>
-          <v-text-field
-            solo
-            flat
-            disabled
-            hide-details
-            v-model="routine.remark"
-            class="routine-remarks"
-          >
-          </v-text-field>
-          <v-list>
+          <v-list class="pt-4">
             <v-list-item
               v-for="(set, index) in routine.sets"
               :key="'exer-' + index"
@@ -113,7 +95,7 @@
             <v-icon>mdi-history</v-icon>
           </v-btn>
 
-          <v-btn to="/">
+          <v-btn to="/dashboard">
             <span>Routine</span>
             <v-icon>mdi-recycle</v-icon>
           </v-btn>
@@ -140,8 +122,6 @@ export default {
       date: new Date().toISOString().substr(0, 10),
       workoutDates: ['2019-08-01', '2019-08-03'],
       routine: {
-        name: 'Arms-2',
-        remark: 'my first workout routine recorded',
         exercise: ['Tricep Extension', 'Bicep Curl'],
         sets: [
           [
@@ -273,37 +253,5 @@ export default {
 
 .first-column >>> .v-list-item {
   width: 23.89px;
-}
-
-.routine-name {
-  width: 100%;
-  font-size: 20px;
-  min-height: 45px;
-  font-weight: bold;
-  padding: 20px 0px 5px 0px;
-}
-
-.routine-name >>> .v-input__slot {
-  background-color: white !important;
-}
-
-.routine-name >>> input {
-  text-align: left !important;
-}
-
-.routine-remarks {
-  width: 100%;
-  font-size: 14px;
-  min-height: 35px;
-  padding: 0px 0px 15px 0px;
-}
-
-.routine-remarks >>> .v-input__slot {
-  background-color: white !important;
-}
-
-.routine-remarks >>> input {
-  text-align: left !important;
-  color: rgba(0, 0, 0, 0.54) !important;
 }
 </style>

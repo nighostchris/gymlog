@@ -240,6 +240,7 @@ export default {
       this.exerciseSearchDialog = false;
     },
     changeRoutineDialog() {
+      this.routine.sets = [];
       this.$emit('changeRoutineDialog');
     },
     updateSelectedExercise(i) {

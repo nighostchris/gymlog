@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-	const Routines = sequelize.define('routines', {
+	const Records = sequelize.define('records', {
 		id: {
 			type: DataTypes.INTEGER,
 			primaryKey: true,
@@ -12,16 +12,16 @@ module.exports = (sequelize, DataTypes) => {
 				key: 'id'
 			},
 		},
-		name: {
+		date: {
 			type: DataTypes.STRING,
-		},
-		remark: {
-			type: DataTypes.STRING(30),
 		},
 		exercise: {
 			type: DataTypes.ARRAY(DataTypes.STRING),
 		},
+		sets: {
+			type: DataTypes.ARRAY(DataTypes.ARRAY(DataTypes.JSON)),
+		},
 	});
 
-	return Routines;
+	return Records;
 };

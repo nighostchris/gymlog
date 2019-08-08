@@ -82,36 +82,13 @@ export default {
           name: 'Arms-1',
           remark: 'dfgdfg',
           exercise: ['Tricep Extension'],
-          sets: [
-            [
-              {
-                set: 1,
-                weight: 20,
-                reps: 8,
-              },
-            ],
-          ],
+          sets: [],
         },
         {
           name: 'Arms-2',
           remark: 'dfgdfg',
           exercise: ['Tricep Extension', 'Bicep Curl'],
-          sets: [
-            [
-              {
-                set: 1,
-                weight: 20,
-                reps: 8,
-              },
-            ],
-            [
-              {
-                set: 1,
-                weight: 20,
-                reps: 8,
-              },
-            ],
-          ],
+          sets: [],
         },
       ],
     };
@@ -122,6 +99,13 @@ export default {
     },
     updateSelectedRoutine(i) {
       this.routine = this.routines[i];
+      this.routine.exercise.forEach(() => {
+        this.routine.sets.push([{
+          set: 1,
+          weight: '',
+          reps: '',
+        }]);
+      });
       this.newRoutineDialog = !this.newRoutineDialog;
     },
   },
