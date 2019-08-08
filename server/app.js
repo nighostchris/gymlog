@@ -1,3 +1,4 @@
+const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const loginFunctions = require('./database/functions/login');
@@ -6,6 +7,7 @@ const recordFunctions = require('./database/functions/record');
 const registerFunctions = require('./database/functions/register');
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 

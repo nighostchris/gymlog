@@ -1,13 +1,17 @@
 import Vue from 'vue';
-import './plugins/axios'
 import Vuetify from 'vuetify/lib';
+import axios from 'axios';
 import router from './router';
 import App from './App.vue';
 import '@mdi/font/css/materialdesignicons.css';
 
 Vue.use(Vuetify);
 
+Vue.prototype.$axios = axios;
+
 Vue.config.productionTip = false;
+
+axios.defaults.baseURL = 'https://gymlog-backend.herokuapp.com';
 
 const vuetify = new Vuetify({
   icons: {

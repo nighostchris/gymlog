@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import axios from 'axios';
 import Router from 'vue-router';
 import Login from './views/Login.vue';
 import Register from './views/Register.vue';
@@ -7,7 +8,7 @@ import History from './views/History.vue';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -33,3 +34,29 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.path !== '/') {
+    const localToken = localStorage.getItem('token');
+    if (localToken == null) {
+      next('/');
+    } else {
+      axios.post('https://gymlog-backend.herokuapp.com/api/v1/token', {
+        token: localToken,
+      }).then((res) => {
+        console.log(res);
+        if ('verify' in res) {
+          next();
+        } else {
+          next('/');
+        }
+      }).catch(() => {
+        next('/');
+      });
+    }
+  }
+
+  next();
+});
+
+export default router;
