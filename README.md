@@ -1,4 +1,4 @@
-# GymLog (Last Update: 5/8/2019 15:27)
+# GymLog (Last Update: 8/8/2019 15:51)
 ---
 [![Netlify Status](https://api.netlify.com/api/v1/badges/94d94cfc-2cbf-43df-8f42-35327ddb779b/deploy-status)](https://app.netlify.com/sites/dreamy-archimedes-5cd57a/deploys)
 
@@ -36,10 +36,11 @@ Another terminal for running the client
 > npm install
 > npm run serve
 ```
-Server deployment in heroku
+Server deployment in heroku (Remember to put config.json and secret.json into dist)
 ```sh
 > heroku login
 > heroku git:remote <heroku_app_name>
+> npm run local-build
 > git subtree push --prefix server heroku master
 ```
 
