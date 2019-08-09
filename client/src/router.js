@@ -38,10 +38,11 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if (to.path !== '/') {
     const localToken = localStorage.getItem('token');
+    console.log(localToken);
     if (localToken == null) {
       next('/');
     } else {
-      axios.post('https://gymlog-backend.herokuapp.com/api/v1/token', {
+      axios.post('http://localhost:3000/api/v1/token', {
         token: localToken,
       }).then((res) => {
         if ('verify' in res.data) {
@@ -49,7 +50,8 @@ router.beforeEach((to, from, next) => {
         } else {
           next('/');
         }
-      }).catch(() => {
+      }).catch((e) => {
+        console.log(e.response);
         next('/');
       });
     }

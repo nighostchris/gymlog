@@ -7,11 +7,11 @@ import '@mdi/font/css/materialdesignicons.css';
 
 Vue.use(Vuetify);
 
+axios.defaults.baseURL = 'https://gymlog-backend.herokuapp.com';
+
 Vue.prototype.$axios = axios;
 
 Vue.config.productionTip = false;
-
-axios.defaults.baseURL = 'https://gymlog-backend.herokuapp.com';
 
 const vuetify = new Vuetify({
   icons: {

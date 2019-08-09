@@ -19,7 +19,7 @@ const createToken = (data, res) => {
 exports.login = (req, res) => {
 	Users.findOne({
 		where: {
-			username: req.body.username,
+			username: req.query.username,
 		},
 	}).then((data) => {
 		if (!data) {
@@ -27,7 +27,7 @@ exports.login = (req, res) => {
 			res.json({ err: 'Non-existing user' });
 		}
 
-		const { password } = req.body;
+		const { password } = req.query;
 		const { salt, hash } = data;
 		const newHashed = bcrypt.generateHashedPassword(password, salt).hashedPassword;
 		const compareResult = (newHashed === hash);
