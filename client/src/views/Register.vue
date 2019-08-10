@@ -6,53 +6,62 @@
           <div class="font-weight-light headline title">Register</div>
           <v-layout justify-center pt-7>
             <v-flex xs8 md8 lg8 xl8>
-              <v-text-field
-                label="Username"
-                v-model="username"
-                :rules="[rules.required, rules.nameLengthLimit]"
-                solo-inverted
-                clearable
-              >
-              </v-text-field>
-              <v-text-field
-                label="Password"
-                v-model="password"
-                :rules="[rules.required, rules.passwordLength, rules.passwordNumber]"
-                type="password"
-                solo-inverted
-                clearable
-              >
-              </v-text-field>
-              <v-text-field
-                label="First Name"
-                v-model="firstname"
-                :rules="[rules.required, rules.nameLengthLimit]"
-                solo-inverted
-                clearable
-              >
-              </v-text-field>
-              <v-text-field
-                label="Surname"
-                v-model="surname"
-                :rules="[rules.required, rules.nameLengthLimit]"
-                solo-inverted
-                clearable
-              >
-              </v-text-field>
-              <v-layout justify-end pb-7>
-                <v-btn
-                  color="indigo accent-4"
-                  class="white--text font-weight-bold"
-                  @click="onSubmit"
+              <v-form v-model="valid">
+                <v-text-field
+                  label="Username"
+                  v-model="username"
+                  :rules="[rules.required, rules.nameLengthLimit]"
+                  solo-inverted
+                  clearable
                 >
-                  Submit
-                </v-btn>
-              </v-layout>
+                </v-text-field>
+                <v-text-field
+                  label="Password"
+                  v-model="password"
+                  :rules="[rules.required, rules.passwordLength, rules.passwordNumber]"
+                  type="password"
+                  solo-inverted
+                  clearable
+                >
+                </v-text-field>
+                <v-text-field
+                  label="First Name"
+                  v-model="firstname"
+                  :rules="[rules.required, rules.nameLengthLimit]"
+                  solo-inverted
+                  clearable
+                >
+                </v-text-field>
+                <v-text-field
+                  label="Surname"
+                  v-model="surname"
+                  :rules="[rules.required, rules.nameLengthLimit]"
+                  solo-inverted
+                  clearable
+                >
+                </v-text-field>
+                <v-layout justify-end pb-7>
+                  <v-btn
+                    :disabled="!valid"
+                    color="indigo accent-4"
+                    class="white--text font-weight-bold"
+                    @click="register"
+                  >
+                    Submit
+                  </v-btn>
+                </v-layout>
+              </v-form>
             </v-flex>
           </v-layout>
         </v-card>
       </v-flex>
     </v-layout>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="1000"
+    >
+      {{ snackbarNoti }}
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -60,6 +69,9 @@
 export default {
   data() {
     return {
+      valid: false,
+      snackbar: false,
+      snackbarNoti: '',
       username: '',
       password: '',
       firstname: '',
@@ -73,9 +85,25 @@ export default {
     };
   },
   methods: {
-    onSubmit() {
-      console.log('clicked');
-      console.log(`${this.username} ${this.firstname} ${this.surname}`);
+    register() {
+      this.$axios.post('/api/v1/users', {
+        username: this.username,
+        password: this.password,
+        firstname: this.firstname,
+        surname: this.surname,
+      }).then((res) => {
+        if ('success' in res.data) {
+          this.snackbarNoti = res.data.success;
+          this.snackbar = true;
+          setTimeout(() => this.$router.push('/'), 1000);
+        } else {
+          this.snackbarNoti = res.data.err;
+          this.snackbar = true;
+        }
+      }).catch((e) => {
+        this.snackbarNoti = e.response.data.err;
+        this.snackbar = true;
+      });
     },
   },
 };

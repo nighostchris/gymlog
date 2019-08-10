@@ -36,25 +36,31 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.path !== '/') {
-    const localToken = localStorage.getItem('token');
-    console.log(localToken);
-    if (localToken == null) {
+  const localToken = localStorage.getItem('token');
+  if (localToken == null) {
+    if (to.path !== '/' && to.path !== 'register') {
       next('/');
     } else {
-      axios.post('http://localhost:3000/api/v1/token', {
-        token: localToken,
-      }).then((res) => {
-        if ('verify' in res.data) {
-          next();
-        } else {
-          next('/');
-        }
-      }).catch((e) => {
-        console.log(e.response);
-        next('/');
-      });
+      next();
     }
+  } else {
+    axios.post('https://gymlog-backend.herokuapp.com/api/v1/token', {
+      token: localToken,
+    }).then((res) => {
+      if ('verify' in res.data) {
+        if (to.path === '/' || to.path === '/register') {
+          next('/dashboard');
+        } else {
+          next();
+        }
+      }
+    }).catch(() => {
+      if (to.path === '/' || to.path === '/register') {
+        next();
+      } else {
+        next('/');
+      }
+    });
   }
 
   next();
