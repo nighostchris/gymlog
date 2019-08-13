@@ -205,35 +205,32 @@ export default {
     return {
       exerciseSearchDialog: false,
       dateDialog: false,
-      exerciseList: [
-        {
-          name: 'Tricep Extension',
-          part: 'Arms',
-          tool: 'cable',
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-        },
-        {
-          name: 'Bicep Curl',
-          part: 'Arms',
-          tool: 'dumbell',
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-        },
-        {
-          name: 'Lateral Raise',
-          part: 'Shoulder',
-          tool: 'dumbell',
-          avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg',
-        },
-      ],
-      bodyPart: [
-        'Arms',
-        'Shoulder',
-      ],
-      tools: [
-        'Dumbell',
-        'Cable',
-      ],
+      exerciseList: [],
+      bodyPart: [],
+      tools: [],
     };
+  },
+  mounted() {
+    this.$axios.get('http://localhost:3000/api/v1/exercise').then((res) => {
+      this.exerciseList = res.data;
+      const bplooked = {};
+      const tlooked = {};
+      const bpresult = [];
+      const tresult = [];
+      this.exerciseList.forEach((e) => {
+        const { part, tool } = e;
+        if (!(part in bplooked)) {
+          bplooked[part] = 1;
+          bpresult.push(part);
+        }
+        if (!(tool in tlooked)) {
+          tlooked[tool] = 1;
+          tresult.push(tool);
+        }
+      });
+      this.bodyPart = bpresult.sort();
+      this.tools = tresult.sort();
+    });
   },
   methods: {
     updateExerciseSearchDialog() {

@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		user_id: {
-			type: DataTypes.INTEGER,
+		username: {
+			type: DataTypes.STRING(20),
 			references: {
 				model: 'users',
-				key: 'id'
+				key: 'username'
 			},
 		},
 		name: {
