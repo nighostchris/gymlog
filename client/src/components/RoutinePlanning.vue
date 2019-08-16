@@ -14,6 +14,13 @@
     >
       <v-card>
         <v-layout column style="padding: 0 16px">
+          <v-btn
+            color="green"
+            dark
+            @click="addRecord"
+          >
+            Finish
+          </v-btn>
           <v-text-field
             solo
             flat
@@ -272,11 +279,48 @@ export default {
         modifySet[j].set -= 1;
       }
     },
+    addRecord() {
+      this.$axios.post('https://gymlog-backend.herokuapp.com/api/v1/token', {
+        token: localStorage.getItem('token'),
+      }).then((res) => {
+        if ('verify' in res.data) {
+          this.$axios.post('/api/v1/record', {
+            username: res.data.verify.sub,
+            name: this.routine.name,
+            remark: this.routine.remark,
+            date: this.routine.date,
+            exercise: JSON.stringify(this.routine.exercise),
+            sets: JSON.stringify(this.routine.sets),
+          }).then((res) => {
+            if ('success' in res.data) {
+              //this.snackbarNoti = res.data.success;
+              //this.snackbar = true;
+              //setTimeout(() => this.changeRoutineDialog, 1000);
+            } else {
+              // this.snackbarNoti = res.data.err;
+              // this.snackbar = true;
+            }
+          });
+        }
+      }).catch((e) => {
+        // this.snackbarNoti = e.response.data.err;
+        // this.snackbar = true;
+      });
+    }
   },
 };
 </script>
 
 <style scoped>
+.v-application .green {
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+  height: 26px !important;
+  padding: 0 10px;
+  position: absolute;
+}
+
 .v-application .light-blue.lighten-1 {
   width: 100%;
 }
@@ -404,7 +448,7 @@ export default {
   width: 100%;
   font-size: 20px;
   font-weight: bold;
-  padding: 30px 0px 5px 20px;
+  padding: 40px 0px 5px 20px;
 }
 
 .routine-name >>> .v-input__slot {

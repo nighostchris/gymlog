@@ -30,14 +30,14 @@ exports.addRecord = (req, res) => {
 		}
 
     const record = {
-      user_id: data.id,
+      username: data.username,
       date: req.body.date,
       exercise: req.body.exercise,
       sets: req.body.sets,
     };
 
     const routine = {
-      user_id: data.id,
+      username: data.username,
       name: req.body.name,
       remark: req.body.remark,
       exercise: req.body.exercise,
