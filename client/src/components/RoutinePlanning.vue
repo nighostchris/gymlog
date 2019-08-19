@@ -197,6 +197,12 @@
         @closeExerciseSearchDialog="updateExerciseSearchDialog"
       />
     </v-dialog>
+    <v-snackbar
+      v-model="snackbar"
+      :timeout="1000"
+    >
+      {{ snackbarNoti }}
+    </v-snackbar>
   </div>
 </template>
 
@@ -210,6 +216,8 @@ export default {
   },
   data() {
     return {
+      snackbar: false,
+      snackbarNoti: '',
       exerciseSearchDialog: false,
       dateDialog: false,
       exerciseList: [],
@@ -293,18 +301,18 @@ export default {
             sets: JSON.stringify(this.routine.sets),
           }).then((res) => {
             if ('success' in res.data) {
-              //this.snackbarNoti = res.data.success;
-              //this.snackbar = true;
-              //setTimeout(() => this.changeRoutineDialog, 1000);
+              this.snackbarNoti = res.data.success;
+              this.snackbar = true;
+              setTimeout(() => this.changeRoutineDialog, 1000);
             } else {
-              // this.snackbarNoti = res.data.err;
-              // this.snackbar = true;
+              this.snackbarNoti = res.data.err;
+              this.snackbar = true;
             }
           });
         }
       }).catch((e) => {
-        // this.snackbarNoti = e.response.data.err;
-        // this.snackbar = true;
+        this.snackbarNoti = e.response.data.err;
+        this.snackbar = true;
       });
     }
   },

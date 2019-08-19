@@ -20,6 +20,7 @@ app.route('/api/v1/token')
 	.post(tokenFunctions.validateToken);
 
 app.route('/api/v1/record')
+	.get(recordFunctions.getRecord)
 	.post(recordFunctions.addRecord);
 
 app.route('/api/v1/exercise')
