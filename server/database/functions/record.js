@@ -4,7 +4,6 @@ const models = require('../models');
 
 const Users = models.users;
 const Records = models.records;
-const Routines = models.routine;
 
 const validateToken = (req, res) => {
   try {
@@ -30,32 +29,28 @@ exports.addRecord = (req, res) => {
 		}
 
     const record = {
-      user_id: data.id,
+      username: data.username,
       date: req.body.date,
       exercise: req.body.exercise,
       sets: req.body.sets,
     };
 
+    /*
     const routine = {
-      user_id: data.id,
+      username: data.username,
       name: req.body.name,
       remark: req.body.remark,
       exercise: req.body.exercise,
     };
+    */
 
-    Routines.create(routine).then(() => {
-      Records.create(record).then((success) => {
-        res.status(200);
-        res.json({ "success": "Exercises recorded" });
-      }).catch((e) => {
-        res.status(500);
-        res.send(e);
-      });
+    Records.create(record).then((success) => {
+      res.status(200);
+      res.json({ "success": "Exercises recorded" });
     }).catch((e) => {
       res.status(500);
-      res.send(e);
-    });
-    
+      res.json({ err: e });
+    });  
 	}).catch((e) => {
 		res.status(500);
 		res.json({ err: e });
@@ -77,7 +72,7 @@ exports.getRecord = (req, res) => {
 
     Records.findAll({
       where: {
-        date: req.body.date,
+        date: req.query.date,
       },
     }).then((data) => {
       res.status(200);
