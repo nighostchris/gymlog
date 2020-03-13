@@ -4,6 +4,12 @@
 
 GymLog is a web-app for recording personal workout data and diet.
 
+### Screenshots
+![Home Page](https://i.imgur.com/EKew5uz.png)
+![History Page](https://i.imgur.com/jo0NNz3.png)
+![New Routine](https://i.imgur.com/Mxsx7vD.png)
+![New Exercise](https://i.imgur.com/u9A2hmW.png)
+
 ### Urgent To-do
 - [ ] Simple gym history view page 
 - [ ] User management page
